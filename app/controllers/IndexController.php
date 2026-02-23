@@ -13,6 +13,7 @@ class IndexController extends BaseController{
      * @return null
      */
 	function index(){
+		$page_title = $this->view->page_title = "Data Center ArasITC";
 		if(user_login_status() == true){
 			$this->redirect(HOME_PAGE);
 		}

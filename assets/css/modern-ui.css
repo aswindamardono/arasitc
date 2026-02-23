@@ -1,0 +1,201 @@
+/* Modern UI & Mobile Bottom Navbar */
+
+:root {
+    --primary-color: #17a2b8;
+    /* Info/Teal color from original theme */
+    --accent-color: #fd7e14;
+    /* Orange/Warning color for FAB */
+    --bg-color: #f4f6f9;
+    --text-color: #333;
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --navbar-height: 60px;
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+}
+
+/* Desktop Navigation Modernization */
+@media (min-width: 768px) {
+
+    /* Gradient Sidebar */
+    #sidebar.navbar-dark.bg-info {
+        background: linear-gradient(135deg, #17a2b8 0%, #138496 100%) !important;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+        border-right: none;
+    }
+
+    /* Gradient Topbar */
+    #topbar.navbar-dark.bg-info {
+        background: linear-gradient(to right, #17a2b8, #20c997) !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Minimalist Sidebar Layout */
+    #sidebar .nav-link {
+        color: rgba(255, 255, 255, 0.85) !important;
+        font-weight: 500;
+        padding: 12px 20px;
+        transition: all 0.2s ease;
+        border-radius: 0 25px 25px 0;
+        margin-right: 10px;
+    }
+
+    #sidebar .nav-link:hover,
+    #sidebar .nav-link.active {
+        background-color: rgba(255, 255, 255, 0.15);
+        color: #fff !important;
+        padding-left: 25px;
+        /* Slight movement effect */
+    }
+
+    #sidebar .nav-link i {
+        margin-right: 10px;
+        opacity: 0.8;
+    }
+
+    /* User Profile in Sidebar */
+    .menu-profile {
+        background: transparent !important;
+        padding: 20px 0 !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 10px;
+    }
+
+    .menu-profile .user-name {
+        color: #fff !important;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+
+    /* Navbar Brand */
+    .navbar-brand {
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-size: 1.2rem;
+    }
+}
+
+/* Modern Card Styling */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 20px;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+.card-header {
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    font-weight: 600;
+    border-radius: 12px 12px 0 0 !important;
+}
+
+/* Mobile Bottom Navbar (Visible only on mobile) */
+.mobile-bottom-nav {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: var(--navbar-height);
+    background-color: #fff;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1050;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.mobile-bottom-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #6c757d;
+    font-size: 10px;
+    flex: 1;
+}
+
+.mobile-bottom-nav-item i {
+    font-size: 20px;
+    margin-bottom: 2px;
+}
+
+.mobile-bottom-nav-item.active {
+    color: var(--primary-color);
+}
+
+/* Central FAB (Floating Action Button) */
+.mobile-fab-container {
+    position: relative;
+    top: -20px;
+}
+
+.mobile-fab {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(253, 126, 20, 0.4);
+    border: 4px solid #fff;
+    /* Border to blend with nav */
+}
+
+.mobile-fab i {
+    font-size: 24px;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 767.98px) {
+
+    /* Hide Sidebars and Topbars on Mobile */
+    #sidebar,
+    #topbar {
+        display: none !important;
+    }
+
+    /* Show Bottom Nav */
+    .mobile-bottom-nav {
+        display: flex;
+    }
+
+    /* Adjust padding for fixed bottom nav */
+    #main-content {
+        margin-left: 0 !important;
+        padding-bottom: 80px !important;
+        /* Space for navbar */
+        padding-top: 20px !important;
+    }
+
+    #page-content {
+        min-height: auto;
+    }
+
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    /* Make tables scrollable on mobile */
+    .table-responsive {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+    }
+}

@@ -86,7 +86,7 @@
                     </style>
                     <div class="fadeIn animated mb-4">
                         <div class="text-capitalize">
-                            <h2>Welcome To Data Center ArasITC</h2>
+                            <h2>Welcome To Data Center ArasITC new</h2>
                         </div>
                     </div>
                     <div>

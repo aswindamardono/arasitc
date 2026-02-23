@@ -5,3 +5,4 @@ app/views/layouts/report_layout_kuitansi.php
 app/views/layouts/report_layout_sertifikat_belakang.php
 app/views/layouts/report_layout_sertifikat_non.php
 app/views/layouts/report_layout_sertifikat.php
+helpers/Functions.php

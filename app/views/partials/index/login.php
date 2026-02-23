@@ -99,9 +99,9 @@
     <!-- Toggle Container (Overlay) -->
     <div class="toggle-box">
         <div class="toggle-panel toggle-left">
-            <h1>Hello, Welcome!</h1>
-            <p>Don't have an account?</p>
-            <button class="btn-auth register-btn" id="register">Register</button>
+            <h1>Welcome Guys</h1>
+            <p>Udah punya akun belum?</p>
+            <button class="btn-auth register-btn" id="register">Daftar disini !</button>
         </div>
 
         <div class="toggle-panel toggle-right">

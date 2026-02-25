@@ -226,8 +226,8 @@ $show_pagination = $this->show_pagination;
                                                         </a>
                                                         <?php } ?>
                                                         <?php if($can_edit){ ?>
-                                                        <a class="btn btn-sm btn-info has-tooltip" title="Edit This Record" href="<?php print_link("absensi/edit/$rec_id"); ?>">
-                                                            <i class="fa fa-edit"></i> Absen Pulang
+                                                        <a class="btn btn-sm btn-danger has-tooltip" title="Edit This Record" href="<?php print_link("absensi/edit/$rec_id"); ?>">
+                                                            <i class="fa fa-clock-o"></i> Absen Pulang
                                                         </a>
                                                         <?php } ?>
                                                         <?php if($can_delete){ ?>

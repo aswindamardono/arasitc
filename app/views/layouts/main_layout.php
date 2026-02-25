@@ -35,6 +35,124 @@
 			Html ::  page_css('dropzone.min.css');
 			Html ::  page_js('jquery-3.3.1.min.js');
 		?>
+		<style>
+			/* Mobile FAB Menu Styles */
+			.mobile-fab-container {
+				position: relative;
+			}
+
+			.mobile-fab {
+				background: linear-gradient(135deg, #FF8C42 0%, #FF6B42 100%);
+				border: none;
+				padding: 0;
+				cursor: pointer;
+				transition: all 0.3s ease;
+			}
+
+			.mobile-fab:hover {
+				background: linear-gradient(135deg, #FF9952 0%, #FF7C52 100%);
+				transform: scale(1.1);
+			}
+
+			.mobile-fab i {
+				font-size: 24px;
+				color: white;
+			}
+
+			/* FAB Menu Hidden State */
+			.mobile-fab-menu {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				top: 0;
+				z-index: 999;
+				opacity: 0;
+				visibility: hidden;
+				transition: all 0.3s ease;
+			}
+
+			.mobile-fab-menu.active {
+				opacity: 1;
+				visibility: visible;
+			}
+
+			.mobile-fab-menu-overlay {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				top: 0;
+				background: rgba(0, 0, 0, 0.5);
+				cursor: pointer;
+			}
+
+			.mobile-fab-menu-content {
+				position: fixed;
+				bottom: 80px;
+				left: 50%;
+				transform: translateX(-50%) scale(0.7);
+				background: white;
+				border-radius: 16px;
+				box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+				padding: 8px;
+				min-width: 240px;
+				opacity: 0;
+				transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+				pointer-events: none;
+			}
+
+			.mobile-fab-menu.active .mobile-fab-menu-content {
+				opacity: 1;
+				transform: translateX(-50%) scale(1);
+				pointer-events: auto;
+			}
+
+			.mobile-fab-menu-item {
+				display: flex;
+				align-items: center;
+				padding: 12px 16px;
+				color: #333;
+				text-decoration: none;
+				border-radius: 8px;
+				transition: all 0.2s ease;
+				margin-bottom: 4px;
+			}
+
+			.mobile-fab-menu-item:last-child {
+				margin-bottom: 0;
+			}
+
+			.mobile-fab-menu-item:hover {
+				background-color: #f0f0f0;
+				transform: translateX(4px);
+			}
+
+			.mobile-fab-menu-item i {
+				width: 32px;
+				height: 32px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: linear-gradient(135deg, #FF8C42 0%, #FF6B42 100%);
+				color: white;
+				border-radius: 8px;
+				margin-right: 12px;
+				font-size: 18px;
+			}
+
+			.mobile-fab-menu-item span {
+				font-weight: 500;
+				font-size: 14px;
+			}
+
+			/* Responsive */
+			@media(max-width: 576px) {
+				.mobile-fab-menu-content {
+					min-width: 200px;
+				}
+			}
+		</style>
 	</head>
 	<?php 
 		$page_id = "index";
@@ -45,28 +163,93 @@
 	<body id="<?php echo $page_id ?>" class="with-login <?php echo $body_class ?>">
         <!-- Mobile Bottom Navbar -->
         <?php if(user_login_status() == true): ?>
+        <?php 
+            $user_role_id = get_active_user('user_role_id');
+            $is_admin = ($user_role_id == 1); // Role 1 = Admin
+            $is_user = ($user_role_id == 2);  // Role 2 = User
+        ?>
         <div class="mobile-bottom-nav d-md-none">
+            <!-- Home/Beranda - Visible to all -->
             <a href="<?php print_link('home') ?>" class="mobile-bottom-nav-item">
                 <i class="fa fa-home"></i>
-                <span>Home</span>
+                <span>Beranda</span>
             </a>
+            
+            <!-- Profile/Profil - Visible to all -->
             <a href="<?php print_link('account') ?>" class="mobile-bottom-nav-item">
                 <i class="fa fa-user"></i>
                 <span>Profil</span>
             </a>
+            
+            <!-- Central FAB Button - Different action based on role -->
             <div class="mobile-fab-container">
-                <a href="#" class="mobile-fab" data-toggle="modal" data-target="#modal-absen-masuk">
-                    <i class="fa fa-camera"></i>
-                </a>
+                <button class="mobile-fab" id="mobile-fab-btn" type="button">
+                    <?php if($is_admin): ?>
+                        <i class="fa fa-caret-square-o-up"></i>
+                    <?php elseif($is_user): ?>
+                        <i class="fa fa-book"></i>
+                    <?php endif; ?>
+                </button>
+                
+                <!-- FAB Submenu Popup -->
+                <div class="mobile-fab-menu" id="mobile-fab-menu">
+                    <div class="mobile-fab-menu-overlay" id="mobile-fab-menu-overlay"></div>
+                    <div class="mobile-fab-menu-content">
+                        <?php if($is_admin): ?>
+                            <!-- Admin Submenu Items -->
+                            <a href="<?php print_link('sertifikat_depan') ?>" class="mobile-fab-menu-item" data-toggle="modal" data-target="#modal-absen-masuk">
+                                <i class="fa fa-file-text"></i>
+                                <span>Sertifikat Kerja</span>
+                            </a>
+                            <a href="<?php print_link('sertifikat') ?>" class="mobile-fab-menu-item">
+                                <i class="fa fa-file-text-o"></i>
+                                <span>Sertifikat Non Kerja</span>
+                            </a>
+                            <a href="<?php print_link('sertifikat_belakang') ?>" class="mobile-fab-menu-item">
+                                <i class="fa fa-list-ol"></i>
+                                <span>Nilai Sertifikat</span>
+                            </a>
+                        <?php elseif($is_user): ?>
+                            <!-- User Submenu Items -->
+                            <a href="<?php print_link('sertifikat_depan') ?>" class="mobile-fab-menu-item" data-toggle="modal" data-target="#modal-absen-masuk">
+                                <i class="fa fa-file-text"></i>
+                                <span>Sertifikat Kerja</span>
+                            </a>
+                            <a href="<?php print_link('sertifikat') ?>" class="mobile-fab-menu-item">
+                                <i class="fa fa-file-text-o"></i>
+                                <span>Sertifikat Non Kerja</span>
+                            </a>
+                            <a href="<?php print_link('sertifikat_belakang') ?>" class="mobile-fab-menu-item">
+                                <i class="fa fa-list-ol"></i>
+                                <span>Nilai Sertifikat</span>
+                            </a>
+                        <?php endif; ?>
+                    </div>
+                </div>
             </div>
-            <a href="#" class="mobile-bottom-nav-item">
-                <i class="fa fa-file-text"></i>
-                <span>Izin</span>
-            </a>
-            <a href="<?php print_link('absensi') ?>" class="mobile-bottom-nav-item">
-                <i class="fa fa-history"></i>
-                <span>Riwayat</span>
-            </a>
+            
+            <!-- Right side items - Different based on role -->
+            <?php if($is_admin): ?>
+                <!-- Admin Menu Items -->
+                <a href="<?php print_link('kuitansifix') ?>" class="mobile-bottom-nav-item">
+                    <i class="fa fa-money"></i>
+                    <span>Kuitansi</span>
+                </a>
+                <a href="<?php print_link('user') ?>" class="mobile-bottom-nav-item">
+                    <i class="fa fa-users"></i>
+                    <span>Murid</span>
+                </a>
+            <?php elseif($is_user): ?>
+                <!-- User Menu Items -->
+                <a href="<?php print_link('kuitansifix') ?>" class="mobile-bottom-nav-item">
+                    <i class="fa fa-money"></i>
+                    <span>Kuitansi</span>
+                </a>
+                <a href="<?php print_link('index/logout?csrf_token=' . Csrf::$token) ?>" class="mobile-bottom-nav-item">
+                    <i class="fa fa-sign-out"></i>
+                    <span>Keluar</span>
+                </a>
+            <?php endif; ?>
         </div>
         <?php endif; ?>
 		<div id="page-wrapper">
@@ -162,5 +345,51 @@
 			Html ::  page_js('plugins-init.js');
 			Html ::  page_js('page-scripts.js');
 		?>
+		<script>
+			// Mobile FAB Menu Handler
+			document.addEventListener('DOMContentLoaded', function() {
+				const fabBtn = document.getElementById('mobile-fab-btn');
+				const fabMenu = document.getElementById('mobile-fab-menu');
+				const fabMenuOverlay = document.getElementById('mobile-fab-menu-overlay');
+				const fabMenuItems = document.querySelectorAll('.mobile-fab-menu-item');
+
+				// Toggle menu on FAB button click
+				fabBtn.addEventListener('click', function(e) {
+					e.preventDefault();
+					e.stopPropagation();
+					fabMenu.classList.toggle('active');
+				});
+
+				// Close menu on overlay click
+				fabMenuOverlay.addEventListener('click', function(e) {
+					e.preventDefault();
+					e.stopPropagation();
+					fabMenu.classList.remove('active');
+				});
+
+				// Close menu when menu item is clicked (but allow navigation)
+				fabMenuItems.forEach(item => {
+					item.addEventListener('click', function() {
+						setTimeout(() => {
+							fabMenu.classList.remove('active');
+						}, 100);
+					});
+				});
+
+				// Close menu when clicking outside
+				document.addEventListener('click', function(e) {
+					if (!fabMenu.contains(e.target) && !fabBtn.contains(e.target)) {
+						fabMenu.classList.remove('active');
+					}
+				});
+
+				// Close menu on escape key
+				document.addEventListener('keydown', function(e) {
+					if (e.key === 'Escape') {
+						fabMenu.classList.remove('active');
+					}
+				});
+			});
+		</script>
 	</body>
 </html>

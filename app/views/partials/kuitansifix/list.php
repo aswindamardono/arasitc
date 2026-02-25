@@ -30,7 +30,7 @@ $show_pagination = $this->show_pagination;
         <div class="container-fluid">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">Kuitansifix</h4>
+                    <h4 class="record-title">Kuitansi</h4>
                 </div>
                 <div class="col-sm-3 ">
                     <?php if($can_add){ ?>

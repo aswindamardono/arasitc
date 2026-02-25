@@ -61,9 +61,9 @@ $redirect_to = $this->redirect_to;
                                     </div>
                                     <div class="form-ajax-status"></div>
                                     <div class="form-group text-center">
-                                        <button class="btn btn-primary" type="submit">
+                                        <button class="btn btn-danger" type="submit">
                                             Absen Pulang
-                                            <i class="fa fa-send"></i>
+                                            <i class="fa fa-clock-o"></i>
                                         </button>
                                     </div>
                                 </form>

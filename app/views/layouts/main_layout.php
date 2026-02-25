@@ -67,7 +67,7 @@
 
 			#topbar .navbar-brand img {
 				margin-right: 8px;
-				filter: brightness(0) invert(1);
+				padding-left : 10px;
 			}
 
 			#topbar .nav-link {

@@ -9,7 +9,7 @@
             <button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
             </button>
             <button type="button" id="sidebarCollapse" class="btn btn-info">
-                <span class="navbar-toggler-icon"></span>
+                <!-- <span class="navbar-toggler-icon"></span> -->
             </button>
             <div class="navbar-collapse collapse navbar-responsive-collapse">
                 <ul class="navbar-nav ml-auto">
@@ -61,9 +61,8 @@
                             }
                             ?>
                         </a>
-                        <h5 class="user-name">Hi 
+                        <h5 class="user-name">Hai 
                             <?php echo ucwords(USER_NAME); ?>
-                            <small class="text-muted"><?php echo ACL::$user_role; ?> </small>
                         </h5>
                         <div class="dropdown menu-dropdown">
                             <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

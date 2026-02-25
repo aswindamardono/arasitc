@@ -36,22 +36,148 @@
 			Html ::  page_js('jquery-3.3.1.min.js');
 		?>
 		<style>
+			/* Color Variables */
+			:root {
+				--primary-color: #17A2B8;
+				--primary-dark: #138496;
+				--primary-light: #5BC0DE;
+				--accent-color: #FF8C42;
+				--accent-dark: #FF6B42;
+				--text-primary: #2C3E50;
+				--text-secondary: #7F8C8D;
+				--border-color: #ECF0F1;
+				--bg-light: #F8F9FA;
+			}
+
+			/* Mobile Topbar Display */
+			#topbar {
+				display: flex !important;
+				visibility: visible !important;
+				background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%) !important;
+				box-shadow: 0 4px 12px rgba(23, 162, 184, 0.2) !important;
+				border: none !important;
+			}
+
+			#topbar .navbar-brand {
+				font-weight: 600;
+				font-size: 18px;
+				color: white !important;
+				letter-spacing: 0.5px;
+			}
+
+			#topbar .navbar-brand img {
+				margin-right: 8px;
+				filter: brightness(0) invert(1);
+			}
+
+			#topbar .nav-link {
+				color: white !important;
+				transition: all 0.3s ease !important;
+			}
+
+			#topbar .nav-link:hover,
+			#topbar .nav-link.active {
+				color: var(--accent-color) !important;
+				background-color: rgba(255, 255, 255, 0.1) !important;
+				border-radius: 8px !important;
+			}
+
+			#topbar .dropdown-menu {
+				background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+				border: 1px solid var(--border-color);
+				box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+				border-radius: 8px;
+				margin-top: 8px;
+			}
+
+			#topbar .dropdown-item {
+				color: var(--text-primary);
+				transition: all 0.2s ease;
+				border-radius: 6px;
+				margin: 4px 8px;
+			}
+
+			#topbar .dropdown-item:hover {
+				background-color: var(--bg-light);
+				color: var(--accent-color);
+				transform: translateX(4px);
+			}
+
+			#topbar .dropdown-item i {
+				margin-right: 10px;
+				color: var(--accent-color);
+			}
+
+			@media (max-width: 768px) {
+				#topbar {
+					position: fixed !important;
+					top: 0 !important;
+					left: 0 !important;
+					right: 0 !important;
+					z-index: 998 !important;
+					width: 100% !important;
+					padding: 0.5rem 0 !important;
+				}
+
+				#page-wrapper {
+					margin-top: 60px !important;
+					padding-top: 10px !important;
+				}
+
+				#main-content {
+					padding-top: 0 !important;
+					margin-top: 0 !important;
+				}
+
+				#topbar .navbar-brand {
+					font-size: 16px;
+				}
+
+				#topbar .navbar-brand img {
+					height: 32px;
+					width: auto;
+				}
+			}
+
+			/* Mobile FAB Menu Item Icons */
+			.mobile-fab-menu-item i {
+				width: 40px;
+				height: 40px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-dark) 100%);
+				color: white;
+				border-radius: 10px;
+				margin-right: 12px;
+				font-size: 18px;
+				box-shadow: 0 2px 8px rgba(255, 140, 66, 0.2);
+			}
+
 			/* Mobile FAB Menu Styles */
 			.mobile-fab-container {
 				position: relative;
 			}
 
 			.mobile-fab {
-				background: linear-gradient(135deg, #FF8C42 0%, #FF6B42 100%);
+				background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-dark) 100%);
 				border: none;
 				padding: 0;
 				cursor: pointer;
-				transition: all 0.3s ease;
+				transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+				box-shadow: 0 4px 15px rgba(255, 107, 66, 0.3);
+			}
+
+			.mobile-fab:active,
+			.mobile-fab:focus {
+				outline: none;
+				box-shadow: 0 6px 20px rgba(255, 107, 66, 0.4);
 			}
 
 			.mobile-fab:hover {
 				background: linear-gradient(135deg, #FF9952 0%, #FF7C52 100%);
-				transform: scale(1.1);
+				transform: scale(1.12);
+				box-shadow: 0 6px 20px rgba(255, 107, 66, 0.4);
 			}
 
 			.mobile-fab i {
@@ -85,6 +211,7 @@
 				top: 0;
 				background: rgba(0, 0, 0, 0.5);
 				cursor: pointer;
+				backdrop-filter: blur(4px);
 			}
 
 			.mobile-fab-menu-content {
@@ -94,8 +221,8 @@
 				transform: translateX(-50%) scale(0.7);
 				background: white;
 				border-radius: 16px;
-				box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-				padding: 8px;
+				box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+				padding: 12px;
 				min-width: 240px;
 				opacity: 0;
 				transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -112,11 +239,12 @@
 				display: flex;
 				align-items: center;
 				padding: 12px 16px;
-				color: #333;
+				color: var(--text-primary);
 				text-decoration: none;
-				border-radius: 8px;
+				border-radius: 10px;
 				transition: all 0.2s ease;
-				margin-bottom: 4px;
+				margin-bottom: 6px;
+				font-weight: 500;
 			}
 
 			.mobile-fab-menu-item:last-child {
@@ -124,21 +252,9 @@
 			}
 
 			.mobile-fab-menu-item:hover {
-				background-color: #f0f0f0;
-				transform: translateX(4px);
-			}
-
-			.mobile-fab-menu-item i {
-				width: 32px;
-				height: 32px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				background: linear-gradient(135deg, #FF8C42 0%, #FF6B42 100%);
-				color: white;
-				border-radius: 8px;
-				margin-right: 12px;
-				font-size: 18px;
+				background: linear-gradient(135deg, rgba(23, 162, 184, 0.1) 0%, rgba(23, 162, 184, 0.05) 100%);
+				transform: translateX(6px);
+				color: var(--primary-color);
 			}
 
 			.mobile-fab-menu-item span {
@@ -150,7 +266,96 @@
 			@media(max-width: 576px) {
 				.mobile-fab-menu-content {
 					min-width: 200px;
+					bottom: 85px;
 				}
+			}
+
+			/* Mobile Bottom Navbar Styles */
+			.mobile-bottom-nav {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				height: 70px;
+				background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+				border-top: none;
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				z-index: 997;
+				box-shadow: 0 -4px 16px rgba(23, 162, 184, 0.2);
+			}
+
+			.mobile-bottom-nav-item {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				text-decoration: none;
+				color: white;
+				font-size: 11px;
+				padding: 8px 12px;
+				transition: all 0.3s ease;
+				flex: 1;
+				height: 100%;
+				position: relative;
+				margin: 0 2px;
+				font-weight: 600;
+				letter-spacing: 0.3px;
+			}
+
+			.mobile-bottom-nav-item::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 2px;
+				background: rgba(255, 255, 255, 0.3);
+				opacity: 0;
+				transition: opacity 0.3s ease;
+			}
+
+			.mobile-bottom-nav-item:hover::before {
+				opacity: 1;
+			}
+
+			.mobile-bottom-nav-item:hover {
+				background-color: rgba(255, 255, 255, 0.15);
+			}
+
+			.mobile-bottom-nav-item:hover i {
+				color: white;
+				transform: scale(1.2);
+			}
+
+			.mobile-bottom-nav-item i {
+				font-size: 24px;
+				margin-bottom: 4px;
+				color: white;
+				transition: all 0.3s ease;
+			}
+
+			.mobile-bottom-nav-item span {
+				font-weight: 600;
+				letter-spacing: 0.3px;
+			}
+
+			#main-content {
+				padding-bottom: 90px;
+			}
+
+			/* Topbar Navbar Override Styles */
+			.navbar-dark .navbar-toggler {
+				border-color: rgba(255, 255, 255, 0.2);
+			}
+
+			.navbar-dark .navbar-toggler:hover {
+				background-color: rgba(255, 255, 255, 0.1);
+			}
+
+			.navbar-dark .navbar-toggler-icon {
+				background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 			}
 		</style>
 	</head>
@@ -208,6 +413,10 @@
                             <a href="<?php print_link('sertifikat_belakang') ?>" class="mobile-fab-menu-item">
                                 <i class="fa fa-list-ol"></i>
                                 <span>Nilai Sertifikat</span>
+                            </a>
+							<a href="<?php print_link('index/logout?csrf_token=' . Csrf::$token) ?>" class="mobile-fab-menu-item">
+                                <i class="fa fa-sign-out"></i>
+                                <span>Keluar</span>
                             </a>
                         <?php elseif($is_user): ?>
                             <!-- User Submenu Items -->

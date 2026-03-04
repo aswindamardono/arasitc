@@ -24,7 +24,7 @@
             </div>
 
             <button type="submit" class="btn-auth">Sign In</button>
-            <p>or login with social platforms</p>
+            <p>ya ya</p>
             <div class="social-icons">
                 <a href="#" class="google"><i class="fa fa-google"></i></a>
                 <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
@@ -99,7 +99,8 @@
     <!-- Toggle Container (Overlay) -->
     <div class="toggle-box">
         <div class="toggle-panel toggle-left">
-            <h1>Welcome Guys</h1>
+            <img width="250px" src="../assets/images/logo stiker shadow.png">
+            <h1 style="color : white">Welcome Guys</h1>
             <p>Udah punya akun belum?</p>
             <button class="btn-auth register-btn" id="register">Daftar disini !</button>
         </div>

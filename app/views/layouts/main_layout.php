@@ -27,6 +27,7 @@
 			Html ::  page_css('bootstrap-theme-minty-teal.css');
 			Html ::  page_css('custom-style.css');
 			Html ::  page_css('modern-ui.css');
+			Html ::  page_css('modern-login.css');
             Html ::  page_css('auth.css');
 		?>
 		<?php

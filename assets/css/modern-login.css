@@ -1,0 +1,304 @@
+/* Modern Login Page Styles */
+
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --secondary-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 15px rgba(102, 126, 234, 0.2);
+    --shadow-lg: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    --color-primary: #667eea;
+    --color-secondary: #764ba2;
+    --color-light: #f8f9fa;
+    --color-border: #e0e0e0;
+}
+
+/* Glass Morphism Card */
+.modern-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: var(--shadow-lg);
+    animation: slideUp 0.6s ease-out;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.modern-card:hover {
+    box-shadow: 0 12px 40px rgba(31, 38, 135, 0.4);
+    transform: translateY(-2px);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Card Header */
+.modern-card h4 {
+    color: var(--color-primary);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    font-size: 1.7rem;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.3px;
+}
+
+.modern-card h4 i {
+    margin-right: 10px;
+    font-size: 1.6rem;
+}
+
+/* Decorative HR */
+.modern-card hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+    margin: 1.5rem 0;
+    opacity: 0.6;
+}
+
+/* Modern Input Fields */
+.modern-input {
+    border: none;
+    border-bottom: 2px solid var(--color-border);
+    border-radius: 8px;
+    padding: 14px 0;
+    background: transparent;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 0.95rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.modern-input::placeholder {
+    color: #aaa;
+    opacity: 0.8;
+    font-weight: 400;
+}
+
+.modern-input:focus {
+    outline: none;
+    border-bottom-color: var(--color-primary);
+    background: rgba(102, 126, 234, 0.05);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+    padding: 14px 8px;
+}
+
+.modern-input:valid {
+    border-bottom-color: #4caf50;
+}
+
+/* Input Group Text */
+.input-group-text {
+    background: transparent !important;
+    border: none !important;
+    color: var(--color-primary) !important;
+    font-size: 1.1rem;
+    border-bottom: 2px solid var(--color-border) !important;
+    transition: all 0.3s ease;
+}
+
+.modern-input:focus ~ .input-group-text {
+    color: var(--color-secondary) !important;
+    border-bottom-color: var(--color-primary) !important;
+}
+
+/* Modern Buttons */
+.modern-btn {
+    background: var(--primary-gradient);
+    border: none;
+    border-radius: 10px;
+    padding: 13px 32px;
+    font-weight: 600;
+    color: white;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+}
+
+.modern-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.modern-btn:hover::before {
+    left: 100%;
+}
+
+.modern-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+}
+
+.modern-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.modern-btn i {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.modern-btn:hover i {
+    transform: translateX(2px);
+}
+
+/* Secondary Button (Register) */
+.modern-btn.success-btn {
+    background: var(--secondary-gradient);
+}
+
+.modern-btn.success-btn:hover {
+    box-shadow: 0 8px 25px rgba(79, 172, 254, 0.5);
+}
+
+/* Checkbox Styling */
+.checkbox-custom {
+    accent-color: var(--color-primary);
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    transition: all 0.3s ease;
+}
+
+.checkbox-custom:hover {
+    transform: scale(1.1);
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    color: #555;
+    font-weight: 500;
+}
+
+.checkbox-label:hover {
+    color: var(--color-primary);
+}
+
+/* Link Styling */
+.reset-link {
+    color: #ff6b6b;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.reset-link:hover {
+    color: #ff5252;
+    text-decoration: underline;
+    transform: translateX(2px);
+}
+
+/* Form Group Spacing */
+.input-group.form-group {
+    margin-bottom: 1.5rem;
+}
+
+/* Bottom Section */
+.form-group.text-center {
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+}
+
+.form-group.text-center p {
+    color: #999;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .modern-card {
+        margin-top: 2rem;
+        border-radius: 15px;
+        padding: 2rem 1.5rem !important;
+    }
+
+    .modern-card h4 {
+        font-size: 1.5rem;
+    }
+
+    .modern-btn {
+        padding: 12px 24px;
+        font-size: 0.85rem;
+    }
+
+    .col-md-4 {
+        margin-top: 2rem;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .modern-card {
+        background: rgba(20, 20, 40, 0.9);
+        color: #fff;
+    }
+
+    .modern-card h4 {
+        color: #667eea;
+    }
+
+    .modern-input {
+        color: #fff;
+        border-bottom-color: #444;
+    }
+
+    .modern-input::placeholder {
+        color: #888;
+    }
+
+    .modern-input:focus {
+        background: rgba(102, 126, 234, 0.1);
+    }
+
+    .checkbox-label {
+        color: #ccc;
+    }
+}
+
+/* Loading Animation */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.load-indicator {
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.modern-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.modern-btn:disabled:hover {
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}

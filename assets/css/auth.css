@@ -6,7 +6,8 @@ body#index {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(-40deg, #e2e2e2, #c9d6ff, #d1c4ff, #e2e2e2);
+    background: linear-gradient(-40deg, #e0f7ff, #00aeff, #001c58, #008682);
+    /* background-image: url('../images/wallpaper SIDOARJO2.jpg'); */
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
     font-family: 'Poppins', sans-serif;
@@ -148,8 +149,8 @@ body#index #page-content {
 .input-box input:focus,
 .input-box select:focus,
 .input-box textarea:focus {
-    outline: 2px solid #7494ec;
-    box-shadow: 0 0 5px rgba(116, 148, 236, 0.5);
+    outline: 2px solid #00B4D8;
+    box-shadow: 0 0 5px rgba(0, 180, 216, 0.5);
     transition: .1s;
 }
 
@@ -176,15 +177,22 @@ body#index #page-content {
 .btn-auth {
     width: 100%;
     height: 48px;
-    background: purple;
+    background: linear-gradient(135deg, #00B4D8, #0096C7);
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    box-shadow: 0 0 10px rgba(0, 180, 216, 0.3);
     border: none;
     cursor: pointer;
     font-size: 16px;
     color: #fff;
     font-weight: 600;
     margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-auth:hover {
+    background: linear-gradient(135deg, #0096C7, #0078A0);
+    box-shadow: 0 8px 20px rgba(0, 180, 216, 0.4);
+    transform: translateY(-2px);
 }
 
 .login-container p {
@@ -253,7 +261,7 @@ body#index #page-content {
     position: absolute;
     width: 300%;
     height: 100%;
-    background: purple;
+    background: linear-gradient(135deg, #00B4D8, #004258);
     z-index: 2;
     transition: 1.8s ease-in-out;
 }

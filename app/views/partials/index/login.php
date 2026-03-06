@@ -99,7 +99,7 @@
     <!-- Toggle Container (Overlay) -->
     <div class="toggle-box">
         <div class="toggle-panel toggle-left">
-            <img width="220px" src="../assets/images/logo stiker shadow.png">
+            <img width="220px" src="<?php print_link("assets/images/logo stiker shadow.png") ?>">
             <h1 style="color : white">Welcome Guys</h1>
             <p>Udah punya akun belum?</p>
             <button class="btn-auth register-btn" id="register">Daftar disini !</button>

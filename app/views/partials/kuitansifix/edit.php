@@ -53,25 +53,8 @@ $redirect_to = $this->redirect_to;
                                             </div>
                                             <div class="col-sm-8">
                                                 <div class="">
-                                                    <select required=""  id="ctrl-no_kuitansi" name="no_kuitansi"  placeholder="Select a value ..."    class="custom-select" >
-                                                        <option value="">Select a value ...</option>
-                                                        <?php
-                                                        $rec = $data['no_kuitansi'];
-                                                        $no_kuitansi_options = $comp_model -> kuitansifix_no_kuitansi_option_list();
-                                                        if(!empty($no_kuitansi_options)){
-                                                        foreach($no_kuitansi_options as $option){
-                                                        $value = (!empty($option['value']) ? $option['value'] : null);
-                                                        $label = (!empty($option['label']) ? $option['label'] : $value);
-                                                        $selected = ( $value == $rec ? 'selected' : null );
-                                                        ?>
-                                                        <option 
-                                                            <?php echo $selected; ?> value="<?php echo $value; ?>"><?php echo $label; ?>
-                                                        </option>
-                                                        <?php
-                                                        }
-                                                        }
-                                                        ?>
-                                                    </select>
+                                                    <input id="ctrl-no_kuitansi"  value="<?php  echo $this->set_field_value('no_kuitansi',""); ?>" type="text" placeholder="Enter No Kuitansi"  required="" name="no_kuitansi"  class="form-control " />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

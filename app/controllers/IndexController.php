@@ -36,7 +36,7 @@ class IndexController extends BaseController{
 				//check if user account has been activated by administrator
 				$user_status = strtolower($user['account_status']);
 				if($user_status != "active"){
-					return $this->login_fail("Your account is not active. Please contact system administrator for more information");
+					return $this->login_fail("Daftar akun berhasil, silakan hubungi Admin untuk aktivasi akun.");
 				}
         		unset($user['password']); //Remove user password. No need to store it in the session
 				set_session("user_data", $user); // Set active user data in a sessions

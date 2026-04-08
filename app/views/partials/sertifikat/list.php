@@ -155,18 +155,18 @@ $show_pagination = $this->show_pagination;
                                                     <th class="td-btn">
                                                         <?php if($can_view){ ?>
                                                         <a class="btn btn-sm btn-success has-tooltip" title="View Record" href="<?php print_link("sertifikat/view/$rec_id"); ?>">
-                                                            <i class="fa fa-eye"></i> Lihat Sertifikat
+                                                            <i class="fa fa-eye"></i>
                                                         </a>
                                                         <?php } ?>
                                                         <?php if($can_edit){ ?>
                                                         <a class="btn btn-sm btn-info has-tooltip" title="Edit This Record" href="<?php print_link("sertifikat/edit/$rec_id"); ?>">
-                                                            <i class="fa fa-edit"></i> Edit
+                                                            <i class="fa fa-edit"></i>
                                                         </a>
                                                         <?php } ?>
                                                         <?php if($can_delete){ ?>
                                                         <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" title="Delete this record" href="<?php print_link("sertifikat/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
                                                             <i class="fa fa-times"></i>
-                                                            Delete
+                                                            
                                                         </a>
                                                         <?php } ?>
                                                     </th>

@@ -5,6 +5,7 @@
     <div class="form-box login">
         <form name="loginForm" action="<?php print_link('index/login/?csrf_token=' . Csrf::$token); ?>" class="needs-validation form page-form" method="post">
             <h1>Sign In</h1>
+            <?php $this :: display_page_errors(); ?>
             <div class="input-box">
                 <input placeholder="Username / Email" name="username" required="required" type="text" />
                 <i class="fa fa-user"></i>
@@ -15,21 +16,21 @@
             </div>
             
             <div class="forgot-link">
-                <a href="<?php print_link('passwordmanager') ?>">Forgot Your Password?</a>
+                <a href="<?php print_link('passwordmanager') ?>">Lupa Password?</a>
             </div>
 
              <div style="width: 100%; text-align: left; font-size: 13px; margin-bottom: 10px;">
                 <input type="checkbox" id="rememberme" name="rememberme" value="true" style="width: auto; margin-right: 5px;">
-                <label for="rememberme">Remember Me</label>
+                <label for="rememberme">Ingat identitas saya</label>
             </div>
 
-            <button type="submit" class="btn-auth">Sign In</button>
-            <p>ya ya</p>
+            <button type="submit" class="btn-auth">Login</button>
+            <p>Follow media sosial kami ya !</p>
             <div class="social-icons">
-                <a href="#" class="google"><i class="fa fa-google"></i></a>
+                <a href="#" class="google"><i class="fa fa-youtube"></i></a>
                 <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
                 <a href="#" class="github"><i class="fa fa-github"></i></a>
-                <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                <a href="#" class="linkedin"><i class="fa fa-instagram"></i></a>
             </div>
         </form>
     </div>
@@ -37,7 +38,7 @@
     <!-- Register Form (Sign Up) -->
     <div class="form-box register">
         <form id="user-userregister-form" role="form" novalidate enctype="multipart/form-data" class="form page-form needs-validation" action="<?php print_link("index/register?csrf_token=" . Csrf::$token) ?>" method="post">
-            <h1 style="font-size: 28px;">Registration</h1>
+            <h1 style="font-size: 28px;">Registrasi</h1>
             
             <div class="input-box" style="margin: 10px 0;">
                 <input value="<?php echo $this->set_field_value('username',""); ?>" type="text" placeholder="Nama Lengkap" required name="username" />
@@ -92,7 +93,7 @@
                 <div class="dz-file-limit text-center text-muted small"></div>
             </div>
 
-            <button type="submit" class="btn-auth">Register</button>
+            <button type="submit" class="btn-auth">Daftar</button>
         </form>
     </div>
 
@@ -107,7 +108,7 @@
 
         <div class="toggle-panel toggle-right">
             <h1>Welcome Back!</h1>
-            <p>Already have an account?</p>
+            <p>Bagi yang sudah punya akun klik disini !</p>
             <button class="btn-auth login-btn" id="login">Login</button>
         </div>
     </div>

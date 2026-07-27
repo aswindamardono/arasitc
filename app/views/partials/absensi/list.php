@@ -205,6 +205,9 @@ $show_pagination = $this->show_pagination;
                                                     </td>
                                                     <td class="td-jam_msk"> <?php echo format_datetime_badge($data['jam_msk'], 'masuk'); ?></td>
                                                     <td class="td-jam_klr">
+                                                        <?php 
+                                                        $jam_klr_empty = (empty($data['jam_klr']) || $data['jam_klr'] == '0000-00-00 00:00:00' || $data['jam_klr'] == '0000-00-00');
+                                                        ?>
                                                         <span <?php if($can_edit){ ?> data-value="<?php echo $data['jam_klr']; ?>" 
                                                             data-pk="<?php echo $data['id_absen'] ?>" 
                                                             data-url="<?php print_link("absensi/editfield/" . urlencode($data['id_absen'])); ?>" 
@@ -218,22 +221,22 @@ $show_pagination = $this->show_pagination;
                                                             class="is-editable" <?php } ?>>
                                                             <?php echo format_datetime_badge($data['jam_klr'], 'keluar'); ?> 
                                                         </span>
+                                                        <?php if($jam_klr_empty && $can_edit){ ?>
+                                                        <a class="btn btn-sm has-tooltip" title="Absen Pulang" href="<?php print_link("absensi/edit/$rec_id"); ?>" style="background: linear-gradient(135deg, #ff6b6b, #ee5a24); color: #fff; border: none; border-radius: 50%; width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 3px 10px rgba(238,90,36,0.35); transition: all 0.2s ease; margin-left: 6px; vertical-align: middle;">
+                                                            <i class="fa fa-sign-out" style="font-size: 15px;"></i>
+                                                        </a>
+                                                        <?php } ?>
                                                     </td>
                                                     <th class="td-btn">
                                                         <?php if($can_view){ ?>
                                                         <a class="btn btn-sm btn-success has-tooltip" title="View Record" href="<?php print_link("absensi/view/$rec_id"); ?>">
-                                                            <i class="fa fa-eye"></i> View
-                                                        </a>
-                                                        <?php } ?>
-                                                        <?php if($can_edit){ ?>
-                                                        <a class="btn btn-sm btn-danger has-tooltip" title="Edit This Record" href="<?php print_link("absensi/edit/$rec_id"); ?>">
-                                                            <i class="fa fa-clock-o"></i> Absen Pulang
+                                                            <i class="fa fa-eye"></i>
                                                         </a>
                                                         <?php } ?>
                                                         <?php if($can_delete){ ?>
                                                         <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" title="Delete this record" href="<?php print_link("absensi/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
                                                             <i class="fa fa-times"></i>
-                                                            Delete
+                                                            
                                                         </a>
                                                         <?php } ?>
                                                     </th>

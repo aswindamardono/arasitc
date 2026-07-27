@@ -121,8 +121,8 @@
 				}
 
 				#page-wrapper {
-					margin-top: 60px !important;
-					padding-top: 10px !important;
+					/* margin-top: 60px !important;
+					padding-top: 10px !important; */
 				}
 
 				#main-content {

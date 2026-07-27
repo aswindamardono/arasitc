@@ -86,6 +86,51 @@
         margin-top: 0 !important;
     }
 }
+
+/* Scroll down hint indicator (simple & unobtrusive) */
+.scroll-down-hint {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 32px;
+    height: 32px;
+    background: rgba(0, 180, 216, 0.85);
+    color: #ffffff;
+    border-radius: 50%;
+    font-size: 13px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.2s ease;
+    user-select: none;
+    backdrop-filter: blur(4px);
+    pointer-events: none;
+    opacity: 0;
+}
+
+.scroll-down-hint:hover {
+    background: rgba(0, 119, 182, 0.95);
+}
+
+.bounce-arrow {
+    animation: bounceDown 1.4s infinite;
+}
+
+@keyframes bounceDown {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(4px);
+    }
+    60% {
+        transform: translateY(2px);
+    }
+}
 </style>
 
 <div class="login-container" id="container">
@@ -184,6 +229,9 @@
 
             <button type="submit" class="btn-auth">Daftar</button>
         </form>
+        <div class="scroll-down-hint" id="scroll-hint-register" title="Gulir ke bawah">
+            <i class="fa fa-chevron-down bounce-arrow"></i>
+        </div>
     </div>
 
     <!-- Toggle Container (Overlay) -->
@@ -211,6 +259,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     registerBtn.addEventListener('click', () => {
         container.classList.add("active");
+        setTimeout(checkScrollRegister, 400);
     });
 
     loginBtn.addEventListener('click', () => {
@@ -221,6 +270,43 @@ document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     if(urlParams.get('mode') === 'register') {
         container.classList.add("active");
+    }
+
+    // Scroll Down Hint Indicator Logic for Register Form
+    const registerFormBox = document.querySelector('.form-box.register');
+    const scrollHintRegister = document.getElementById('scroll-hint-register');
+
+    function checkScrollRegister() {
+        if (!registerFormBox || !scrollHintRegister) return;
+        const isScrollable = registerFormBox.scrollHeight - registerFormBox.clientHeight > 20;
+        const isAtBottom = registerFormBox.scrollTop + registerFormBox.clientHeight >= registerFormBox.scrollHeight - 40;
+
+        if (isScrollable && !isAtBottom) {
+            scrollHintRegister.style.opacity = '1';
+            scrollHintRegister.style.pointerEvents = 'auto';
+            scrollHintRegister.style.transform = 'translateX(-50%) translateY(0)';
+        } else {
+            scrollHintRegister.style.opacity = '0';
+            scrollHintRegister.style.pointerEvents = 'none';
+            scrollHintRegister.style.transform = 'translateX(-50%) translateY(8px)';
+        }
+    }
+
+    if (registerFormBox && scrollHintRegister) {
+        registerFormBox.addEventListener('scroll', checkScrollRegister);
+        window.addEventListener('resize', checkScrollRegister);
+
+        scrollHintRegister.addEventListener('click', function() {
+            registerFormBox.scrollBy({
+                top: 200,
+                behavior: 'smooth'
+            });
+        });
+
+        // Run checks after render
+        checkScrollRegister();
+        setTimeout(checkScrollRegister, 300);
+        setTimeout(checkScrollRegister, 800);
     }
 });
 </script>

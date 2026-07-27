@@ -500,4 +500,54 @@ class Html
 			}
 		}
 	}
+
+	/**
+	 * Custom format for Jam Masuk & Jam Keluar display
+	 * Format: DD-MM-YYYY lalu Jam (H:i:s) with attractive badges
+	 * @return string
+	 */
+	public static function format_datetime_badge($val, $type = 'masuk')
+	{
+		if (empty($val) || $val == '0000-00-00 00:00:00' || $val == '0000-00-00') {
+			if ($type == 'keluar') {
+				return '<span class="badge badge-warning text-dark font-weight-normal py-1 px-2"><i class="fa fa-clock-o mr-1"></i>Belum Absen Pulang</span>';
+			}
+			return '<span class="badge badge-secondary text-white font-weight-normal py-1 px-2"><i class="fa fa-minus-circle mr-1"></i>Belum Absen</span>';
+		}
+
+		$timestamp = false;
+		$val_trimmed = trim($val);
+		if (preg_match('/^(\d{2})-(\d{2})-(\d{4})\s+(.+)$/', $val_trimmed, $m)) {
+			$timestamp = strtotime("{$m[3]}-{$m[2]}-{$m[1]} {$m[4]}");
+		} else {
+			$timestamp = strtotime($val_trimmed);
+		}
+
+		if (!$timestamp || $timestamp <= 0) {
+			return htmlspecialchars($val);
+		}
+
+		$tanggal = date('d-m-Y', $timestamp);
+		$jam = date('H:i:s', $timestamp);
+
+		if ($type == 'masuk') {
+			return '<div class="d-inline-flex align-items-center flex-wrap" style="gap:5px;">' .
+				'<span class="badge badge-light border text-dark font-weight-normal px-2 py-1" style="font-size:0.85rem;" title="Tanggal Masuk"><i class="fa fa-calendar text-primary mr-1"></i>' . $tanggal . '</span>' .
+				'<span class="badge badge-success px-2 py-1" style="font-size:0.85rem; font-weight:600;" title="Jam Masuk"><i class="fa fa-clock-o mr-1"></i>' . $jam . '</span>' .
+				'</div>';
+		} else {
+			return '<div class="d-inline-flex align-items-center flex-wrap" style="gap:5px;">' .
+				'<span class="badge badge-light border text-dark font-weight-normal px-2 py-1" style="font-size:0.85rem;" title="Tanggal Keluar"><i class="fa fa-calendar text-info mr-1"></i>' . $tanggal . '</span>' .
+				'<span class="badge badge-danger px-2 py-1" style="font-size:0.85rem; font-weight:600;" title="Jam Keluar"><i class="fa fa-clock-o mr-1"></i>' . $jam . '</span>' .
+				'</div>';
+		}
+	}
 }
+
+if (!function_exists('format_datetime_badge')) {
+	function format_datetime_badge($val, $type = 'masuk')
+	{
+		return Html::format_datetime_badge($val, $type);
+	}
+}
+

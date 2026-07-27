@@ -1,4 +1,93 @@
 
+<style>
+@keyframes floatInPage {
+    0% {
+        opacity: 0;
+        transform: translateY(60px) scale(0.93);
+    }
+    65% {
+        opacity: 1;
+        transform: translateY(-8px) scale(1.01);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes floatContinuous {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes floatInChild {
+    0% {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-container {
+    opacity: 0;
+    animation: floatInPage 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards, floatContinuous 5s ease-in-out infinite 1s !important;
+}
+
+.login-container .form-box.login h1,
+.login-container .form-box.login .input-box,
+.login-container .form-box.login .forgot-link,
+.login-container .form-box.login .btn-auth,
+.login-container .form-box.login .social-icons,
+.login-container .toggle-panel {
+    animation: floatInChild 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.login-container .form-box.login h1 { animation-delay: 0.25s; }
+.login-container .form-box.login .input-box:nth-of-type(1) { animation-delay: 0.35s; }
+.login-container .form-box.login .input-box:nth-of-type(2) { animation-delay: 0.45s; }
+.login-container .form-box.login .btn-auth { animation-delay: 0.55s; }
+.login-container .toggle-panel.toggle-left { animation-delay: 0.35s; }
+
+/* Mobile responsiveness adjustments for toggle header panel */
+@media screen and (max-width: 650px) {
+    .toggle-panel.toggle-left {
+        top: 0;
+        padding-top: 8px !important;
+        justify-content: flex-start !important;
+    }
+
+    .toggle-panel.toggle-left img {
+        width: 200px !important;
+        max-height: 200px !important;
+        object-fit: contain !important;
+        margin-bottom: 2px !important;
+    }
+
+    .toggle-panel.toggle-left h1 {
+        font-size: 25px !important;
+        margin-bottom: 2px !important;
+    }
+
+    .toggle-panel.toggle-left p {
+        font-size: 12px !important;
+        margin-bottom: 2px !important;
+    }
+
+    .toggle-panel.toggle-left #register {
+        height: 38px !important;
+        line-height: 36px !important;
+        margin-top: 0 !important;
+    }
+}
+</style>
+
 <div class="login-container" id="container">
     
     <!-- Login Form (Sign In) -->
@@ -25,13 +114,13 @@
             </div>
 
             <button type="submit" class="btn-auth">Login</button>
-            <p>Follow media sosial kami ya !</p>
+            <!-- <p>Follow media sosial kami ya !</p>
             <div class="social-icons">
                 <a href="#" class="google"><i class="fa fa-youtube"></i></a>
                 <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
                 <a href="#" class="github"><i class="fa fa-github"></i></a>
                 <a href="#" class="linkedin"><i class="fa fa-instagram"></i></a>
-            </div>
+            </div> -->
         </form>
     </div>
 
@@ -65,7 +154,7 @@
                 <i class="fa fa-calendar"></i>
             </div>
              <div class="input-box" style="margin: 10px 0;">
-                <input value="<?php echo $this->set_field_value('no_hp',""); ?>" type="text" placeholder="No HP (WA)" required name="no_hp" />
+                <input value="<?php echo $this->set_field_value('no_hp',""); ?>" type="tel" placeholder="No HP (WA)" required name="no_hp" />
                 <i class="fa fa-phone"></i>
             </div>
              <div class="input-box" style="margin: 10px 0;">
@@ -107,8 +196,8 @@
         </div>
 
         <div class="toggle-panel toggle-right">
-            <h1>Welcome Back!</h1>
-            <p>Bagi yang sudah punya akun klik disini !</p>
+            <h1 style="font-size: 30px">Welcome Back!</h1>
+            <p style="font-size: 14px">Bagi yang sudah punya akun klik disini !</p>
             <button class="btn-auth login-btn" id="login">Login</button>
         </div>
     </div>

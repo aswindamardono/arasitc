@@ -62,6 +62,18 @@ body#index #page-content {
     }
 }
 
+@keyframes floatIn {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.96);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
 .login-container {
     position: relative;
     width: 850px;
@@ -71,6 +83,7 @@ body#index #page-content {
     box-shadow: 0 0 30px rgba(0, 0, 0, .2);
     margin: 20px;
     overflow: hidden;
+    animation: floatIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) ease-out forwards;
 }
 
 .form-box {
@@ -371,6 +384,15 @@ body#index #page-content {
 
     .toggle-panel.toggle-left {
         top: 0;
+        padding-top: 8px;
+        justify-content: flex-start;
+    }
+
+    .toggle-panel.toggle-left img {
+        width: 140px;
+        max-height: 55px;
+        object-fit: contain;
+        margin-bottom: 2px;
     }
 
     .login-container.active .toggle-panel.toggle-left {
@@ -392,8 +414,18 @@ body#index #page-content {
     }
 
     .toggle-panel h1 {
-        font-size: 30px;
+        font-size: 22px;
+        margin-bottom: 2px;
     }
-}
 
+    .toggle-panel p {
+        font-size: 12px;
+        margin-bottom: 6px;
+    }
+
+    .toggle-panel.toggle-left #register {
+        height: 38px;
+        line-height: 36px;
+        margin-top: 0;
+    }
 }

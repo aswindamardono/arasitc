@@ -28,7 +28,7 @@
 			Html ::  page_css('custom-style.css');
 			Html ::  page_css('modern-ui.css');
 			Html ::  page_css('modern-login.css');
-            Html ::  page_css('auth.css');
+            Html ::  page_css('auth.css?v=' . time());
 		?>
 		<?php
 			Html ::  page_css('flatpickr.min.css');

@@ -18,7 +18,7 @@ class IndexController extends BaseController{
 			$this->redirect(HOME_PAGE);
 		}
 		else{
-			$this->render_view("index/index.php");
+			$this->render_view("index/login.php");
 		}
 	}
 	private function login_user($username , $password_text, $rememberme = false){

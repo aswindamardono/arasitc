@@ -203,7 +203,7 @@ $show_pagination = $this->show_pagination;
                                                             <?php echo $data['username_absensi']; ?> 
                                                         </span>
                                                     </td>
-                                                    <td class="td-jam_msk"> <?php echo $data['jam_msk']; ?></td>
+                                                    <td class="td-jam_msk"> <?php echo format_datetime_badge($data['jam_msk'], 'masuk'); ?></td>
                                                     <td class="td-jam_klr">
                                                         <span <?php if($can_edit){ ?> data-value="<?php echo $data['jam_klr']; ?>" 
                                                             data-pk="<?php echo $data['id_absen'] ?>" 
@@ -216,7 +216,7 @@ $show_pagination = $this->show_pagination;
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
                                                             class="is-editable" <?php } ?>>
-                                                            <?php echo $data['jam_klr']; ?> 
+                                                            <?php echo format_datetime_badge($data['jam_klr'], 'keluar'); ?> 
                                                         </span>
                                                     </td>
                                                     <th class="td-btn">

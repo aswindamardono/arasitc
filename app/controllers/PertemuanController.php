@@ -24,7 +24,7 @@ class PertemuanController extends SecureController{
 			$db->orderBy($orderby, $ordertype);
 		}
 		else{
-			$db->orderBy("count_of_id_absen", ORDER_TYPE);
+			$db->orderBy("id_user", "DESC");
 		}
 		$pagination = $this->get_pagination(MAX_RECORD_COUNT); //Get sql limit from url if not set on the sql command text
 		$tc = $db->withTotalCount();

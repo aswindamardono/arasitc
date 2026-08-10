@@ -203,7 +203,7 @@ $show_pagination = $this->show_pagination;
                                                             <?php echo $data['username_absensi']; ?> 
                                                         </span>
                                                     </td>
-                                                    <td class="td-jam_msk"> <?php echo format_datetime_badge($data['jam_msk'], 'masuk'); ?></td>
+                                                    <td class="td-jam_msk"> <?php echo Html::format_datetime_badge($data['jam_msk'], 'masuk'); ?></td>
                                                     <td class="td-jam_klr">
                                                         <?php 
                                                         $jam_klr_empty = (empty($data['jam_klr']) || $data['jam_klr'] == '0000-00-00 00:00:00' || $data['jam_klr'] == '0000-00-00');
@@ -219,7 +219,7 @@ $show_pagination = $this->show_pagination;
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
                                                             class="is-editable" <?php } ?>>
-                                                            <?php echo format_datetime_badge($data['jam_klr'], 'keluar'); ?> 
+                                                            <?php echo Html::format_datetime_badge($data['jam_klr'], 'keluar'); ?> 
                                                         </span>
                                                         <?php if($jam_klr_empty && $can_edit){ ?>
                                                         <a class="btn btn-sm has-tooltip" title="Absen Pulang" href="<?php print_link("absensi/edit/$rec_id"); ?>" style="background: linear-gradient(135deg, #ff6b6b, #ee5a24); color: #fff; border: none; border-radius: 50%; width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 3px 10px rgba(238,90,36,0.35); transition: all 0.2s ease; margin-left: 6px; vertical-align: middle;">

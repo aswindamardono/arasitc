@@ -72,7 +72,7 @@ $show_export_btn = $this->show_export_btn;
                                     </tr>
                                     <tr  class="td-jam_msk">
                                         <th class="title"> Jam Msk: </th>
-                                        <td class="value"> <?php echo format_datetime_badge($data['jam_msk'], 'masuk'); ?></td>
+                                        <td class="value"> <?php echo Html::format_datetime_badge($data['jam_msk'], 'masuk'); ?></td>
                                     </tr>
                                     <tr  class="td-jam_klr">
                                         <th class="title"> Jam Klr: </th>
@@ -88,7 +88,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
                                                 class="is-editable" <?php } ?>>
-                                                <?php echo format_datetime_badge($data['jam_klr'], 'keluar'); ?> 
+                                                <?php echo Html::format_datetime_badge($data['jam_klr'], 'keluar'); ?> 
                                             </span>
                                         </td>
                                     </tr>

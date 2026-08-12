@@ -63,6 +63,18 @@ $redirect_to = $this->redirect_to;
                                 <div class="form-group ">
                                     <div class="row">
                                         <div class="col-sm-4">
+                                            <label class="control-label" for="no_sertifikat">No Sertifikat <span class="text-danger">*</span></label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="">
+                                                <input id="ctrl-no_sertifikat"  value="<?php  echo $this->set_field_value('no_sertifikat',""); ?>" type="text" placeholder="Enter No Sertifikat"  required="" name="no_sertifikat"  class="form-control " />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <div class="row">
+                                        <div class="col-sm-4">
                                             <label class="control-label" for="nama_sertifikat">Nama Sertifikat <span class="text-danger">*</span></label>
                                         </div>
                                         <div class="col-sm-8">

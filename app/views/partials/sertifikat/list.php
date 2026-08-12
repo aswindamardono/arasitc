@@ -126,6 +126,7 @@ $show_pagination = $this->show_pagination;
                                                 <?php } ?>
                                                 <th class="td-btn"></th>
                                                 <th class="td-sno">#</th>
+                                                <th  class="td-no_sertifikat"> No Sertifikat</th>
                                                 <th  class="td-nama_sertifikat"> Nama Sertifikat</th>
                                                 <th  class="td-tgl_sertifikat"> Tgl Sertifikat</th>
                                                 <th  class="td-materi_sertifikat"> Materi Sertifikat</th>
@@ -170,6 +171,21 @@ $show_pagination = $this->show_pagination;
                                                         </a>
                                                         <?php } ?>
                                                     </th>
+                                                    <td class="td-no_sertifikat">
+                                                        <span <?php if($can_edit){ ?> data-value="<?php echo $data['no_sertifikat']; ?>" 
+                                                            data-pk="<?php echo $data['id'] ?>" 
+                                                            data-url="<?php print_link("sertifikat/editfield/" . urlencode($data['id'])); ?>" 
+                                                            data-name="no_sertifikat" 
+                                                            data-title="Enter No Sertifikat" 
+                                                            data-placement="left" 
+                                                            data-toggle="click" 
+                                                            data-type="text" 
+                                                            data-mode="popover" 
+                                                            data-showbuttons="left" 
+                                                            class="is-editable" <?php } ?>>
+                                                            <?php echo $data['no_sertifikat']; ?> 
+                                                        </span>
+                                                    </td>
                                                     <td class="td-nama_sertifikat">
                                                         <span <?php if($can_edit){ ?> data-source='<?php 
                                                             $dependent_field = (!empty($data['id_user']) ? urlencode($data['id_user']) : null);

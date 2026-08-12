@@ -20,6 +20,7 @@ class SertifikatController extends SecureController{
 		$tablename = $this->tablename;
 		$fields = array("id", 
 			"id_user", 
+			"no_sertifikat", 
 			"nama_sertifikat", 
 			"tgl_sertifikat", 
 			"materi_sertifikat");
@@ -30,12 +31,13 @@ class SertifikatController extends SecureController{
 			$search_condition = "(
 				sertifikat.id LIKE ? OR 
 				sertifikat.id_user LIKE ? OR 
+				sertifikat.no_sertifikat LIKE ? OR 
 				sertifikat.nama_sertifikat LIKE ? OR 
 				sertifikat.tgl_sertifikat LIKE ? OR 
 				sertifikat.materi_sertifikat LIKE ?
 			)";
 			$search_params = array(
-				"%$text%","%$text%","%$text%","%$text%","%$text%"
+				"%$text%","%$text%","%$text%","%$text%","%$text%","%$text%"
 			);
 			//setting search conditions
 			$db->where($search_condition, $search_params);
@@ -97,6 +99,7 @@ class SertifikatController extends SecureController{
 		$tablename = $this->tablename;
 		$fields = array("id", 
 			"id_user", 
+			"no_sertifikat", 
 			"nama_sertifikat", 
 			"tgl_sertifikat", 
 			"materi_sertifikat");
@@ -141,16 +144,18 @@ class SertifikatController extends SecureController{
 			$tablename = $this->tablename;
 			$request = $this->request;
 			//fillable fields
-			$fields = $this->fields = array("id_user","nama_sertifikat","tgl_sertifikat","materi_sertifikat");
+			$fields = $this->fields = array("id_user","no_sertifikat","nama_sertifikat","tgl_sertifikat","materi_sertifikat");
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
 				'id_user' => 'required',
+				'no_sertifikat' => 'required',
 				'nama_sertifikat' => 'required',
 				'tgl_sertifikat' => 'required',
 				'materi_sertifikat' => 'required',
 			);
 			$this->sanitize_array = array(
 				'id_user' => 'sanitize_string',
+				'no_sertifikat' => 'sanitize_string',
 				'nama_sertifikat' => 'sanitize_string',
 				'tgl_sertifikat' => 'sanitize_string',
 				'materi_sertifikat' => 'sanitize_string',
@@ -183,17 +188,19 @@ class SertifikatController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		 //editable fields
-		$fields = $this->fields = array("id","id_user","nama_sertifikat","tgl_sertifikat","materi_sertifikat");
+		$fields = $this->fields = array("id","id_user","no_sertifikat","nama_sertifikat","tgl_sertifikat","materi_sertifikat");
 		if($formdata){
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
 				'id_user' => 'required',
+				'no_sertifikat' => 'required',
 				'nama_sertifikat' => 'required',
 				'tgl_sertifikat' => 'required',
 				'materi_sertifikat' => 'required',
 			);
 			$this->sanitize_array = array(
 				'id_user' => 'sanitize_string',
+				'no_sertifikat' => 'sanitize_string',
 				'nama_sertifikat' => 'sanitize_string',
 				'tgl_sertifikat' => 'sanitize_string',
 				'materi_sertifikat' => 'sanitize_string',
@@ -248,7 +255,7 @@ class SertifikatController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		//editable fields
-		$fields = $this->fields = array("id","id_user","nama_sertifikat","tgl_sertifikat","materi_sertifikat");
+		$fields = $this->fields = array("id","id_user","no_sertifikat","nama_sertifikat","tgl_sertifikat","materi_sertifikat");
 		$page_error = null;
 		if($formdata){
 			$postdata = array();
@@ -258,12 +265,14 @@ class SertifikatController extends SecureController{
 			$postdata = $this->format_request_data($postdata);
 			$this->rules_array = array(
 				'id_user' => 'required',
+				'no_sertifikat' => 'required',
 				'nama_sertifikat' => 'required',
 				'tgl_sertifikat' => 'required',
 				'materi_sertifikat' => 'required',
 			);
 			$this->sanitize_array = array(
 				'id_user' => 'sanitize_string',
+				'no_sertifikat' => 'sanitize_string',
 				'nama_sertifikat' => 'sanitize_string',
 				'tgl_sertifikat' => 'sanitize_string',
 				'materi_sertifikat' => 'sanitize_string',

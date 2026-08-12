@@ -75,6 +75,24 @@ $show_export_btn = $this->show_export_btn;
                                             </span>
                                         </td>
                                     </tr>
+                                    <tr  class="td-no_sertifikat">
+                                        <th class="title"> No Sertifikat: </th>
+                                        <td class="value">
+                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['no_sertifikat']; ?>" 
+                                                data-pk="<?php echo $data['id'] ?>" 
+                                                data-url="<?php print_link("sertifikat/editfield/" . urlencode($data['id'])); ?>" 
+                                                data-name="no_sertifikat" 
+                                                data-title="Enter No Sertifikat" 
+                                                data-placement="left" 
+                                                data-toggle="click" 
+                                                data-type="text" 
+                                                data-mode="popover" 
+                                                data-showbuttons="left" 
+                                                class="is-editable" <?php } ?>>
+                                                <?php echo $data['no_sertifikat']; ?> 
+                                            </span>
+                                        </td>
+                                    </tr>
                                     <tr  class="td-nama_sertifikat">
                                         <th class="title"> Nama Sertifikat: </th>
                                         <td class="value">

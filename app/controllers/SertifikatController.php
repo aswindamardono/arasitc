@@ -163,13 +163,19 @@ class SertifikatController extends SecureController{
 			$this->filter_vals = true; //set whether to remove empty fields
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
 			if($this->validated()){
-				$rec_id = $this->rec_id = $db->insert($tablename, $modeldata);
-				if($rec_id){
-					$this->set_flash_msg("Data Sudah Tersimpan", "success");
-					return	$this->redirect("sertifikat");
+				$db->where("no_sertifikat", $modeldata['no_sertifikat']);
+				if($db->has($tablename)){
+					$this->set_page_error("No Sertifikat '" . $modeldata['no_sertifikat'] . "' sudah digunakan!");
 				}
 				else{
-					$this->set_page_error();
+					$rec_id = $this->rec_id = $db->insert($tablename, $modeldata);
+					if($rec_id){
+						$this->set_flash_msg("Data Sudah Tersimpan", "success");
+						return	$this->redirect("sertifikat");
+					}
+					else{
+						$this->set_page_error();
+					}
 				}
 			}
 		}
@@ -207,27 +213,34 @@ class SertifikatController extends SecureController{
 			);
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
 			if($this->validated()){
-		$allowed_roles = array ('1');
-		if(!in_array(strtolower(USER_ROLE), $allowed_roles)){
-		$db->where("sertifikat.id_user", get_active_user('id') );
-		}
-				$db->where("sertifikat.id", $rec_id);;
-				$bool = $db->update($tablename, $modeldata);
-				$numRows = $db->getRowCount(); //number of affected rows. 0 = no record field updated
-				if($bool && $numRows){
-					$this->set_flash_msg("Data Sudah Tersimpan", "success");
-					return $this->redirect("sertifikat");
+				$db->where("no_sertifikat", $modeldata['no_sertifikat']);
+				$db->where("id", $rec_id, "!=");
+				if($db->has($tablename)){
+					$this->set_page_error("No Sertifikat '" . $modeldata['no_sertifikat'] . "' sudah digunakan!");
 				}
 				else{
-					if($db->getLastError()){
-						$this->set_page_error();
+					$allowed_roles = array ('1');
+					if(!in_array(strtolower(USER_ROLE), $allowed_roles)){
+						$db->where("sertifikat.id_user", get_active_user('id') );
 					}
-					elseif(!$numRows){
-						//not an error, but no record was updated
-						$page_error = "No record updated";
-						$this->set_page_error($page_error);
-						$this->set_flash_msg($page_error, "warning");
-						return	$this->redirect("sertifikat");
+					$db->where("sertifikat.id", $rec_id);;
+					$bool = $db->update($tablename, $modeldata);
+					$numRows = $db->getRowCount(); //number of affected rows. 0 = no record field updated
+					if($bool && $numRows){
+						$this->set_flash_msg("Data Sudah Tersimpan", "success");
+						return $this->redirect("sertifikat");
+					}
+					else{
+						if($db->getLastError()){
+							$this->set_page_error();
+						}
+						elseif(!$numRows){
+							//not an error, but no record was updated
+							$page_error = "No record updated";
+							$this->set_page_error($page_error);
+							$this->set_flash_msg($page_error, "warning");
+							return	$this->redirect("sertifikat");
+						}
 					}
 				}
 			}

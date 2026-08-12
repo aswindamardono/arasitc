@@ -139,6 +139,40 @@ $('#ctrl-id').val(id);
     let no_kuitansi = 'AITC/K/'+month+'/'+year+'/'+id;
 $('#ctrl-no_kuitansi').val(no_kuitansi);
 });
+
+$(document).on('click', '#ctrl-no_sertifikat', function(){ 
+    let $input = $(this);
+    let currentVal = $input.val();
+    let startId = 1;
+    if (currentVal) {
+        let parts = currentVal.split('/');
+        let lastNum = parseInt(parts[parts.length - 1]);
+        if (!isNaN(lastNum)) {
+            startId = lastNum + 1;
+        }
+    }
+    const d = new Date();
+    let month = d.getMonth() + 1;
+    let year = d.getFullYear();
+
+    let apiUrl = (typeof siteAddr !== 'undefined') ? siteAddr + 'api/json/sertifikat_existing_no_sertifikat' : 'api/json/sertifikat_existing_no_sertifikat';
+    
+    $.getJSON(apiUrl, function(existingNumbers) {
+        if (!Array.isArray(existingNumbers)) {
+            existingNumbers = [];
+        }
+        let id = startId;
+        let candidate = 'AITC/S/' + month + '/' + year + '/' + id;
+        while (existingNumbers.indexOf(candidate) !== -1) {
+            id++;
+            candidate = 'AITC/S/' + month + '/' + year + '/' + id;
+        }
+        $input.val(candidate);
+    }).fail(function() {
+        let candidate = 'AITC/S/' + month + '/' + year + '/' + startId;
+        $input.val(candidate);
+    });
+});
 });
 /**
  * Table toggle select all records

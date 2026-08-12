@@ -152,4 +152,21 @@ class SharedController extends BaseController{
 		return $arr;
 	}
 
+	/**
+     * sertifikat_existing_no_sertifikat Model Action
+     * @return array
+     */
+	function sertifikat_existing_no_sertifikat(){
+		$db = $this->GetModel();
+		$sqltext = "SELECT DISTINCT no_sertifikat FROM sertifikat WHERE no_sertifikat IS NOT NULL AND no_sertifikat != ''";
+		$records = $db->rawQuery($sqltext);
+		$existing = array();
+		if(!empty($records)){
+			foreach($records as $r){
+				$existing[] = $r['no_sertifikat'];
+			}
+		}
+		return $existing;
+	}
+
 }

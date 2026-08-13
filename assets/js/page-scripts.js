@@ -127,8 +127,14 @@ $(document).ready(function () {
 		if (duration > 0) {
 			window.setTimeout(function () {
 				elem.fadeOut();
-			}, duration)
+			}, duration);
 		}
+	}
+	// Notify admin of new pending users
+	if ($('.new-user').length > 0) {
+		var count = $('.new-user').length;
+		var msg = count === 1 ? 'Ada 1 user baru dengan status Pending.' : 'Ada ' + count + ' user baru dengan status Pending.';
+		showToastSuccess(msg);
 	}
 	$('#ctrl-id').on('click', function () {
 		let id = parseInt($(this).val()) + 1;

@@ -269,13 +269,13 @@ $show_pagination = $this->show_pagination;
                                                         <?php if ($can_view) { ?>
                                                             <a class="btn btn-sm btn-success has-tooltip" title="View Record"
                                                                 href="<?php print_link("user/view/$rec_id"); ?>">
-                                                                <i class="fa fa-eye"></i> View
+                                                                <i class="fa fa-eye"></i>
                                                             </a>
                                                         <?php } ?>
                                                         <?php if ($can_edit) { ?>
                                                             <a class="btn btn-sm btn-info has-tooltip" title="Edit This Record"
                                                                 href="<?php print_link("user/edit/$rec_id"); ?>">
-                                                                <i class="fa fa-edit"></i> Edit
+                                                                <i class="fa fa-edit"></i>
                                                             </a>
                                                         <?php } ?>
                                                         <?php if ($can_delete) { ?>
@@ -285,7 +285,7 @@ $show_pagination = $this->show_pagination;
                                                                 data-prompt-msg="Are you sure you want to delete this record?"
                                                                 data-display-style="modal">
                                                                 <i class="fa fa-times"></i>
-                                                                Delete
+
                                                             </a>
                                                         <?php } ?>
                                                     </th>

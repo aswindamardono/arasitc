@@ -2,7 +2,18 @@
 $page_id = null;
 $comp_model = new SharedController;
 $current_page = $this->set_current_page_link();
+$pending_count = $comp_model->get_pending_user_count();
 ?>
+<?php if (!empty($pending_count) && $pending_count > 0): ?>
+<script>
+	$(document).ready(function () {
+		var count = <?php echo (int)$pending_count; ?>;
+		var msg = count === 1 ? 'Ada 1 user baru dengan status Pending.' : 'Ada ' + count + ' user baru dengan status Pending.';
+		showToastSuccess(msg);
+	});
+</script>
+<?php endif; ?>
+
 <div>
     <div  class="bg-light p-3 mb-3">
         <div class="container">

@@ -169,4 +169,16 @@ class SharedController extends BaseController{
 		return $existing;
 	}
 
+	/**
+     * get_pending_user_count Model Action
+     * @return int
+     */
+	function get_pending_user_count(){
+		$db = $this->GetModel();
+		$db->where("account_status", "Pending");
+		$db->where("user_role_id", "0");
+		return $db->getValue("user", "count(*)");
+	}
+
 }
+

@@ -594,6 +594,16 @@ class BaseView
 		} else {
 			$title = Router::$page_name;
 		}
+
+		if (!empty($title)) {
+			$prefix = 'ArasITC | ';
+			if (strpos($title, $prefix) !== 0) {
+				$title = $prefix . $title;
+			}
+		} else {
+			$title = 'ArasITC';
+		}
+
 		return $title;
 	}
 

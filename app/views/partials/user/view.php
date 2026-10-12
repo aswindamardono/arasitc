@@ -90,7 +90,7 @@ $show_export_btn = $this->show_export_btn;
                                     </tr>
                                     <tr  class="td-photo">
                                         <th class="title"> Photo: </th>
-                                        <td class="value"><?php Html :: page_img($data['photo'],400,400,1); ?></td>
+                                        <td class="value"><?php Html :: page_img($data['photo'],100,100,1); ?></td>
                                     </tr>
                                     <tr  class="td-user_role_id">
                                         <th class="title"> User Role Id: </th>

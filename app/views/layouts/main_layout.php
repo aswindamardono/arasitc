@@ -27,7 +27,7 @@ $page_title = $this->get_page_title();
 	<?php
 	Html::page_css('bootstrap-theme-minty-teal.css');
 	Html::page_css('custom-style.css');
-	Html::page_css('modern-ui.css');
+	Html::page_css('modern-ui.css?v=' . time());
 	Html::page_css('modern-login.css');
 	Html::page_css('auth.css?v=' . time());
 	?>
@@ -557,7 +557,7 @@ if (user_login_status() == true) {
 	Html::page_js('dropzone.min.js');
 	Html::page_js('plugins.js'); //boostrapswitch, passwordStrength, twbs-pagination, blueimp-gallery,
 	Html::page_js('plugins-init.js');
-	Html::page_js('page-scripts.js');
+	Html::page_js('page-scripts.js?v=' . time());
 	?>
 	<script>
 		// Mobile FAB Menu Handler

@@ -192,10 +192,271 @@ body {
         padding-right: 15px;
     }
 
-    /* Make tables scrollable on mobile */
+    /* Make tables scrollable on mobile (default) */
     .table-responsive {
         display: block;
         width: 100%;
         overflow-x: auto;
     }
+
+    /* Responsive Collapse Wrapper: Disable horizontal scrolling for collapse tables */
+    .table-responsive.responsive-collapse-wrapper {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        border-radius: 8px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+        background-color: #fff;
+    }
+
+    .responsive-collapse-table {
+        width: 100% !important;
+        max-width: 100% !important;
+        table-layout: fixed;
+        margin-bottom: 0 !important;
+    }
+
+    .responsive-collapse-table thead.table-header th.td-sno,
+    .responsive-collapse-table tbody td.td-sno {
+        width: 56px !important;
+        min-width: 56px !important;
+        max-width: 56px !important;
+        padding-left: 6px !important;
+        padding-right: 2px !important;
+        white-space: nowrap;
+    }
+
+    .responsive-collapse-table thead.table-header th.td-tanggal,
+    .responsive-collapse-table tbody td.td-tanggal {
+        width: 88px !important;
+        min-width: 86px !important;
+        max-width: 90px !important;
+        padding-left: 4px !important;
+        padding-right: 4px !important;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+    .responsive-collapse-table thead.table-header th.td-harga,
+    .responsive-collapse-table tbody td.td-harga {
+        width: 96px !important;
+        min-width: 92px !important;
+        max-width: 102px !important;
+        padding-left: 4px !important;
+        padding-right: 4px !important;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+    .responsive-collapse-table thead.table-header th.td-nama,
+    .responsive-collapse-table tbody td.td-nama {
+        width: auto !important;
+        padding-left: 4px !important;
+        padding-right: 6px !important;
+        font-size: 12.5px;
+        word-break: break-word;
+    }
+
+    .responsive-collapse-table tbody tr.main-row {
+        cursor: pointer;
+    }
+}
+
+/* ==========================================================================
+   Responsive Collapse Table (Mobile & Desktop) - Image 2 Design
+   ========================================================================== */
+
+.responsive-collapse-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: #ffffff;
+}
+
+/* Green Tint Header matching Image 2 */
+.responsive-collapse-table thead.table-header {
+    background-color: #ebf7f0 !important;
+}
+
+.responsive-collapse-table thead.table-header th {
+    background-color: #ebf7f0 !important;
+    color: #0b6651 !important;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 10px 8px;
+    vertical-align: middle;
+    border-top: none !important;
+    border-bottom: 2px solid #b2dfdb !important;
+    white-space: nowrap;
+}
+
+.responsive-collapse-table thead.table-header th .sort-icon {
+    display: inline-block;
+    margin-left: 3px;
+    color: #278d6b;
+    opacity: 0.6;
+    font-size: 11px;
+}
+
+/* Row & Cell Styling */
+.responsive-collapse-table tbody tr.main-row {
+    transition: background-color 0.15s ease;
+    border-bottom: 1px solid #eef2f5;
+}
+
+.responsive-collapse-table tbody tr.main-row:nth-of-type(4n+1) {
+    background-color: #ffffff;
+}
+
+.responsive-collapse-table tbody tr.main-row:nth-of-type(4n+3) {
+    background-color: #fbfdfc;
+}
+
+.responsive-collapse-table tbody tr.main-row:hover,
+.responsive-collapse-table tbody tr.main-row.row-expanded {
+    background-color: #f2faf5 !important;
+}
+
+.responsive-collapse-table tbody tr.main-row td,
+.responsive-collapse-table tbody tr.main-row th {
+    padding: 10px 8px;
+    vertical-align: middle;
+    font-size: 13px;
+    color: #333333;
+    border-top: 1px solid #eef2f5;
+    border-bottom: none;
+}
+
+/* Circular Collapse Toggle Button (+ / -) matching Image 2 */
+.collapse-btn-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border-radius: 50%;
+    background-color: #1976d2;
+    color: #ffffff !important;
+    font-size: 10px;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    margin-right: 6px;
+    vertical-align: middle;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.collapse-btn-circle:hover {
+    transform: scale(1.08);
+}
+
+.collapse-btn-circle.is-open {
+    background-color: #e53935 !important;
+    /* Red minus icon like Image 2 */
+}
+
+.collapse-btn-circle .icon-state {
+    font-size: 10px;
+    line-height: 1;
+    color: #ffffff;
+}
+
+/* Row Number */
+.responsive-collapse-table .row-num {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333333;
+    vertical-align: middle;
+}
+
+/* Child / Detail Row */
+.responsive-collapse-table tr.detail-row {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.responsive-collapse-table tr.detail-row td.detail-td {
+    border-top: none !important;
+    padding: 0 !important;
+}
+
+.detail-content-wrap {
+    padding: 12px 14px;
+    background-color: #ffffff;
+    border-top: 1px dashed #d1e7dd;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.detail-item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.detail-row-item {
+    display: flex;
+    align-items: flex-start;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.detail-label {
+    width: 105px;
+    min-width: 105px;
+    font-weight: 700;
+    color: #2c3e50;
+    font-size: 12.5px;
+}
+
+.detail-val {
+    flex: 1;
+    color: #495057;
+    word-break: break-word;
+}
+
+/* Action Buttons inside Detail Row matching Image 2 */
+.detail-action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-detail-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 7px;
+    color: #ffffff !important;
+    font-size: 14px;
+    text-decoration: none !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+    transition: transform 0.15s ease, opacity 0.15s ease;
+    border: none;
+}
+
+.btn-detail-action:hover {
+    transform: translateY(-2px);
+    opacity: 0.95;
+    color: #ffffff !important;
+}
+
+.btn-detail-view {
+    background-color: #17a2b8;
+}
+
+.btn-detail-edit {
+    background-color: #f59e0b;
+    /* Amber / Orange like Image 2 */
+}
+
+.btn-detail-delete {
+    background-color: #e53935;
+    /* Red like Image 2 */
 }

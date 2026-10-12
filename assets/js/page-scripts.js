@@ -977,4 +977,40 @@ $(document).ready(function () {
 * Custom Javascript | Jquery codes
 */
 $(document).ready(function () {
+	// Mobile Responsive Collapsible Table Toggle (Image 2 style)
+	$(document).on('click', '.collapse-btn-circle', function (e) {
+		e.preventDefault();
+		e.stopPropagation();
+		var $btn = $(this);
+		var $mainRow = $btn.closest('tr.main-row');
+		var $detailRow = $mainRow.next('tr.detail-row');
+		var $icon = $btn.find('.icon-state');
+
+		if ($btn.hasClass('is-open')) {
+			// Collapse row
+			$detailRow.find('.detail-content-wrap').slideUp(180, function () {
+				$detailRow.hide();
+			});
+			$btn.removeClass('is-open');
+			$icon.removeClass('fa-minus').addClass('fa-plus');
+			$mainRow.removeClass('row-expanded');
+		} else {
+			// Expand row
+			$detailRow.show();
+			$detailRow.find('.detail-content-wrap').hide().slideDown(180);
+			$btn.addClass('is-open');
+			$icon.removeClass('fa-plus').addClass('fa-minus');
+			$mainRow.addClass('row-expanded');
+		}
+	});
+
+	// Mobile row click to expand/collapse (when not clicking links, buttons, inputs)
+	$(document).on('click', '.responsive-collapse-table tbody tr.main-row', function (e) {
+		if ($(window).width() < 768) {
+			if ($(e.target).closest('a, button, input, .is-editable, .collapse-btn-circle, .custom-control').length === 0) {
+				$(this).find('.collapse-btn-circle').trigger('click');
+			}
+		}
+	});
 });
+

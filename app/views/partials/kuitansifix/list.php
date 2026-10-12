@@ -115,12 +115,12 @@ $show_pagination = $this->show_pagination;
                     <?php $this::display_page_errors(); ?>
                     <div class=" animated slideInLeft page-content">
                         <div id="kuitansifix-list-records">
-                            <div id="page-report-body" class="table-responsive">
-                                <table class="table  table-striped table-sm text-left">
+                            <div id="page-report-body" class="table-responsive responsive-collapse-wrapper">
+                                <table class="table responsive-collapse-table table-sm text-left">
                                     <thead class="table-header bg-light">
                                         <tr>
                                             <?php if ($can_delete) { ?>
-                                                <th class="td-checkbox">
+                                                <th class="td-checkbox d-none d-md-table-cell">
                                                     <label class="custom-control custom-checkbox custom-control-inline">
                                                         <input class="toggle-check-all custom-control-input"
                                                             type="checkbox" />
@@ -128,14 +128,14 @@ $show_pagination = $this->show_pagination;
                                                     </label>
                                                 </th>
                                             <?php } ?>
-                                            <th class="td-btn"></th>
-                                            <th class="td-sno">#</th>
-                                            <th class="td-no_kuitansi"> No Kuitansi</th>
-                                            <th class="td-nama"> Nama</th>
-                                            <th class="td-harga"> Harga</th>
-                                            <th class="td-tanggal"> Tanggal</th>
-                                            <th class="td-materi"> Materi</th>
-                                            <th class="td-keterangan"> Keterangan</th>
+                                            <th class="td-sno">NO</th>
+                                            <th class="td-tanggal">TANGGAL <span class="sort-icon"><i class="fa fa-sort"></i></span></th>
+                                            <th class="td-harga">NOMINAL <span class="sort-icon"><i class="fa fa-sort"></i></span></th>
+                                            <th class="td-nama">NAMA <span class="sort-icon"><i class="fa fa-sort"></i></span></th>
+                                            <th class="td-no_kuitansi d-none d-md-table-cell">NO KUITANSI</th>
+                                            <th class="td-materi d-none d-md-table-cell">MATERI</th>
+                                            <th class="td-keterangan d-none d-md-table-cell">KETERANGAN</th>
+                                            <th class="td-btn d-none d-md-table-cell text-center">AKSI</th>
                                         </tr>
                                     </thead>
                                     <?php
@@ -149,53 +149,32 @@ $show_pagination = $this->show_pagination;
                                                 $rec_id = (!empty($data['id']) ? urlencode($data['id']) : null);
                                                 $counter++;
                                                 ?>
-                                                <tr>
+                                                <tr class="main-row" data-record-id="<?php echo $data['id']; ?>">
                                                     <?php if ($can_delete) { ?>
-                                                        <th class=" td-checkbox">
+                                                        <td class="td-checkbox d-none d-md-table-cell">
                                                             <label class="custom-control custom-checkbox custom-control-inline">
                                                                 <input class="optioncheck custom-control-input" name="optioncheck[]"
                                                                     value="<?php echo $data['id'] ?>" type="checkbox" />
                                                                 <span class="custom-control-label"></span>
                                                             </label>
-                                                        </th>
+                                                        </td>
                                                     <?php } ?>
-                                                    <th class="td-sno"><?php echo $counter; ?></th>
-                                                    <th class="td-btn">
-                                                        <?php if ($can_view) { ?>
-                                                            <a class="btn btn-sm btn-success has-tooltip"
-                                                                href="<?php print_link("kuitansifix/view/$rec_id"); ?>">
-                                                                <i class="fa fa-eye"></i>
-                                                            </a>
-                                                        <?php } ?>
-                                                        <?php if ($can_edit) { ?>
-                                                            <a class="btn btn-sm btn-info has-tooltip" title="Edit This Record"
-                                                                href="<?php print_link("kuitansifix/edit/$rec_id"); ?>">
-                                                                <i class="fa fa-edit"></i>
-                                                            </a>
-                                                        <?php } ?>
-                                                        <?php if ($can_delete) { ?>
-                                                            <a class="btn btn-sm btn-danger has-tooltip record-delete-btn"
-                                                                title="Delete this record"
-                                                                href="<?php print_link("kuitansifix/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>"
-                                                                data-prompt-msg="Are you sure you want to delete this record?"
-                                                                data-display-style="modal">
-                                                                <i class="fa fa-times"></i>
-
-                                                            </a>
-                                                        <?php } ?>
-                                                    </th>
-                                                    <td class="td-no_kuitansi">
-                                                        <span <?php if ($can_edit) { ?>
-                                                                data-source='<?php print_link('api/json/kuitansifix_no_kuitansi_option_list'); ?>'
-                                                                data-value="<?php echo $data['no_kuitansi']; ?>"
-                                                                data-pk="<?php echo $data['id'] ?>"
-                                                                data-url="<?php print_link("kuitansifix/editfield/" . urlencode($data['id'])); ?>"
-                                                                data-name="no_kuitansi" data-title="Select a value ..."
-                                                                data-placement="left" data-toggle="click" data-type="select"
-                                                                data-mode="popover" data-showbuttons="left" class="is-editable"
-                                                            <?php } ?>>
-                                                            <?php echo $data['no_kuitansi']; ?>
+                                                    <td class="td-sno">
+                                                        <span class="collapse-btn-circle d-md-none" title="Detail">
+                                                            <i class="fa fa-plus icon-state"></i>
                                                         </span>
+                                                        <span class="row-num"><?php echo $counter; ?></span>
+                                                    </td>
+                                                    <td class="td-tanggal">
+                                                        <span>
+                                                            <?php
+                                                            $tglnew = date_create($data['tanggal']);
+                                                            echo (date_format($tglnew, 'd-m-Y'));
+                                                            ?>
+                                                        </span>
+                                                    </td>
+                                                    <td class="td-harga font-weight-bold text-nowrap">
+                                                        <span><?php echo "Rp " . number_format($data['harga'], 0, ",", "."); ?></span>
                                                     </td>
                                                     <td class="td-nama">
                                                         <span <?php if ($can_edit) { ?> data-source='<?php
@@ -211,16 +190,20 @@ $show_pagination = $this->show_pagination;
                                                             <?php echo $data['nama']; ?>
                                                         </span>
                                                     </td>
-                                                    <td class="td-harga">
-                                                        <span><?php echo "Rp. " . number_format($data['harga'], 0, ",", "."); ?></span>
+                                                    <td class="td-no_kuitansi d-none d-md-table-cell">
+                                                        <span <?php if ($can_edit) { ?>
+                                                                data-source='<?php print_link('api/json/kuitansifix_no_kuitansi_option_list'); ?>'
+                                                                data-value="<?php echo $data['no_kuitansi']; ?>"
+                                                                data-pk="<?php echo $data['id'] ?>"
+                                                                data-url="<?php print_link("kuitansifix/editfield/" . urlencode($data['id'])); ?>"
+                                                                data-name="no_kuitansi" data-title="Select a value ..."
+                                                                data-placement="left" data-toggle="click" data-type="select"
+                                                                data-mode="popover" data-showbuttons="left" class="is-editable"
+                                                            <?php } ?>>
+                                                            <?php echo $data['no_kuitansi']; ?>
+                                                        </span>
                                                     </td>
-                                                    <td class="td-tanggal"> <span>
-                                                            <?php
-                                                            $tglnew = date_create($data['tanggal']);
-                                                            echo (date_format($tglnew, 'd-m-Y'));
-                                                            ?>
-                                                        </span></td>
-                                                    <td class="td-materi">
+                                                    <td class="td-materi d-none d-md-table-cell">
                                                         <span <?php if ($can_edit) { ?>
                                                                 data-value="<?php echo $data['materi']; ?>"
                                                                 data-pk="<?php echo $data['id'] ?>"
@@ -231,7 +214,7 @@ $show_pagination = $this->show_pagination;
                                                             <?php echo $data['materi']; ?>
                                                         </span>
                                                     </td>
-                                                    <td class="td-keterangan">
+                                                    <td class="td-keterangan d-none d-md-table-cell">
                                                         <span <?php if ($can_edit) { ?>
                                                                 data-value="<?php echo $data['keterangan']; ?>"
                                                                 data-pk="<?php echo $data['id'] ?>"
@@ -242,6 +225,96 @@ $show_pagination = $this->show_pagination;
                                                             <?php } ?>>
                                                             <?php echo $data['keterangan']; ?>
                                                         </span>
+                                                    </td>
+                                                    <td class="td-btn d-none d-md-table-cell text-center text-nowrap">
+                                                        <?php if ($can_view) { ?>
+                                                            <a class="btn btn-sm btn-success has-tooltip" title="Lihat"
+                                                                href="<?php print_link("kuitansifix/view/$rec_id"); ?>">
+                                                                <i class="fa fa-eye"></i>
+                                                            </a>
+                                                        <?php } ?>
+                                                        <?php if ($can_edit) { ?>
+                                                            <a class="btn btn-sm btn-info has-tooltip" title="Edit"
+                                                                href="<?php print_link("kuitansifix/edit/$rec_id"); ?>">
+                                                                <i class="fa fa-edit"></i>
+                                                            </a>
+                                                        <?php } ?>
+                                                        <?php if ($can_delete) { ?>
+                                                            <a class="btn btn-sm btn-danger has-tooltip record-delete-btn"
+                                                                title="Hapus"
+                                                                href="<?php print_link("kuitansifix/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>"
+                                                                data-prompt-msg="Are you sure you want to delete this record?"
+                                                                data-display-style="modal">
+                                                                <i class="fa fa-times"></i>
+                                                            </a>
+                                                        <?php } ?>
+                                                    </td>
+                                                </tr>
+                                                <!-- Child row for Mobile View (Image 2 design) -->
+                                                <tr class="detail-row d-md-none" style="display: none;">
+                                                    <td colspan="4" class="detail-td p-0">
+                                                        <div class="detail-content-wrap">
+                                                            <div class="detail-item-list">
+                                                                <div class="detail-row-item">
+                                                                    <span class="detail-label">No Kuitansi</span>
+                                                                    <span class="detail-val">
+                                                                        <span class="badge badge-light border text-dark font-weight-normal px-2 py-1">
+                                                                            <?php echo $data['no_kuitansi']; ?>
+                                                                        </span>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="detail-row-item">
+                                                                    <span class="detail-label">Materi</span>
+                                                                    <span class="detail-val">
+                                                                        <?php echo !empty($data['materi']) ? $data['materi'] : '-'; ?>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="detail-row-item">
+                                                                    <span class="detail-label">Keterangan</span>
+                                                                    <span class="detail-val text-muted">
+                                                                        <?php echo !empty($data['keterangan']) ? $data['keterangan'] : '-'; ?>
+                                                                    </span>
+                                                                </div>
+                                                                <?php if ($can_delete) { ?>
+                                                                    <div class="detail-row-item">
+                                                                        <span class="detail-label">Pilih Data</span>
+                                                                        <span class="detail-val">
+                                                                            <label class="custom-control custom-checkbox custom-control-inline m-0">
+                                                                                <input class="optioncheck custom-control-input" name="optioncheck[]"
+                                                                                    value="<?php echo $data['id'] ?>" type="checkbox" />
+                                                                                <span class="custom-control-label font-weight-normal text-muted small">Centang untuk hapus</span>
+                                                                            </label>
+                                                                        </span>
+                                                                    </div>
+                                                                <?php } ?>
+                                                                <div class="detail-row-item align-items-center mt-2 pt-2 border-top">
+                                                                    <span class="detail-label font-weight-bold">Aksi</span>
+                                                                    <div class="detail-val detail-action-buttons">
+                                                                        <?php if ($can_view) { ?>
+                                                                            <a class="btn-detail-action btn-detail-view has-tooltip" title="Lihat Detail"
+                                                                                href="<?php print_link("kuitansifix/view/$rec_id"); ?>">
+                                                                                <i class="fa fa-eye"></i>
+                                                                            </a>
+                                                                        <?php } ?>
+                                                                        <?php if ($can_edit) { ?>
+                                                                            <a class="btn-detail-action btn-detail-edit has-tooltip" title="Edit Data"
+                                                                                href="<?php print_link("kuitansifix/edit/$rec_id"); ?>">
+                                                                                <i class="fa fa-edit"></i>
+                                                                            </a>
+                                                                        <?php } ?>
+                                                                        <?php if ($can_delete) { ?>
+                                                                            <a class="btn-detail-action btn-detail-delete has-tooltip record-delete-btn"
+                                                                                title="Hapus Data"
+                                                                                href="<?php print_link("kuitansifix/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>"
+                                                                                data-prompt-msg="Are you sure you want to delete this record?"
+                                                                                data-display-style="modal">
+                                                                                <i class="fa fa-trash"></i>
+                                                                            </a>
+                                                                        <?php } ?>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             <?php
@@ -313,4 +386,41 @@ $show_pagination = $this->show_pagination;
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            // Support both direct click and dynamic event
+            $('#kuitansifix-list-records').on('click', '.collapse-btn-circle', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                var $btn = $(this);
+                var $mainRow = $btn.closest('tr.main-row');
+                var $detailRow = $mainRow.next('tr.detail-row');
+                var $icon = $btn.find('.icon-state');
+
+                if ($btn.hasClass('is-open')) {
+                    $detailRow.find('.detail-content-wrap').slideUp(180, function() {
+                        $detailRow.hide();
+                    });
+                    $btn.removeClass('is-open');
+                    $icon.removeClass('fa-minus').addClass('fa-plus');
+                    $mainRow.removeClass('row-expanded');
+                } else {
+                    $detailRow.show();
+                    $detailRow.find('.detail-content-wrap').hide().slideDown(180);
+                    $btn.addClass('is-open');
+                    $icon.removeClass('fa-plus').addClass('fa-minus');
+                    $mainRow.addClass('row-expanded');
+                }
+            });
+
+            // Mobile row click to expand
+            $('#kuitansifix-list-records').on('click', 'tbody tr.main-row', function(e) {
+                if ($(window).width() < 768) {
+                    if ($(e.target).closest('a, button, input, .is-editable, .collapse-btn-circle, .custom-control').length === 0) {
+                        $(this).find('.collapse-btn-circle').trigger('click');
+                    }
+                }
+            });
+        });
+    </script>
 </section>
